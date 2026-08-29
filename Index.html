@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>চরকপাড়া জনকল্যাণ সংঘ - মেম্বার পোর্টাল</title>
+    <style>
+        :root {
+            --primary: #0a5c36;
+            --primary-dark: #053b22;
+            --accent: #d4af37;
+            --bg-overlay: rgba(238, 242, 245, 0.88);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('https://i.ibb.co/jPXjDT8Y/logo.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: contain;
+            background-color: #eef2f5;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--bg-overlay);
+            z-index: -1;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .club-logo {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .club-title {
+            color: var(--primary);
+            font-size: 19px;
+            font-weight: 800;
+            margin: 8px 0 3px 0;
+        }
+
+        .club-address {
+            color: #555;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            border-bottom: 2px dashed #e0e0e0;
+            padding-bottom: 12px;
+        }
+
+        .reg-badge {
+            background-color: #e8f5e9;
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        .tab-box {
+            display: flex;
+            background: #f1f3f5;
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: var(--primary);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .form-body {
+            text-align: left;
+        }
+
+        label { 
+            font-weight: 600; 
+            display: block; 
+            margin-top: 14px; 
+            color: #333;
+            font-size: 13px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 11px 14px;
+            margin-top: 5px;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background-color: #fafafa;
+        }
+
+        button.action-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            margin-top: 22px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(10, 92, 54, 0.25);
+        }
+
+        .id-card {
+            border: 2px solid var(--primary);
+            border-radius: 14px;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .id-card-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 12px;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .id-card-header h3 {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .id-card-header p {
+            margin: 3px 0 0 0;
+            font-size: 10px;
+            opacity: 0.9;
+        }
+
+        .id-card-body {
+            padding: 15px;
+        }
+
+        .member-photo {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            margin-bottom: 8px;
+        }
+
+        .verified-badge {
+            background: #e8f5e9;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .id-details {
+            text-align: left;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #444;
+            background: #fdfdfd;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .id-details strong {
+            color: var(--primary);
+            width: 90px;
+            display: inline-block;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            padding-top: 8px;
+            border-top: 1px dashed #ddd;
+            font-size: 10px;
+            color: #777;
+            text-align: left;
+        }
+
+        .qr-code-img {
+            width: 55px;
+            height: 55px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 2px;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ধাপ ১: লগইন ও রেজিস্ট্রেশন -->
+    <div id="authSection">
+        <img src="https://i.ibb.co/jPXjDT8Y/logo.png" alt="Club Logo" class="club-logo">
+        <div class="club-title">CHARAKPARA JANAKLYAN SNGHA</div>
+        <div class="club-address">
+            চড়কপাড়া, বালিসা, উ: ২৪ পরগণা<br>
+            <span class="reg-badge">রেজি নং-১/21/5990</span>
+        </div>
+
+        <div class="tab-box">
+            <button class="tab-btn active" id="loginTab">লগইন</button>
+            <button class="tab-btn" id="regTab">রেজিস্ট্রেশন</button>
+        </div>
+
+        <!-- লগইন ফর্ম -->
+        <div class="form-body" id="loginForm">
+            <label for="loginEmail">ইমেইল এড্রেস</label>
+            <input type="email" id="loginEmail" placeholder="example@mail.com">
+            
+            <label for="loginPassword">পাসওয়ার্ড</label>
+            <input type="password" id="loginPassword" placeholder="••••••••">
+
+            <button class="action-btn" id="btnLogin">লগইন করুন</button>
+        </div>
+
+        <!-- রেজিস্ট্রেশন ফর্ম -->
+        <div class="form-body" id="regForm" style="display: none;">
+            <label for="regEmail">ইমেইল এড্রেস</label>
+            <input type="email" id="regEmail" placeholder="example@mail.com">
+
+            <label for="regPassword">পাসওয়ার্ড দিন</label>
+            <input type="password" id="regPassword" placeholder="কমপক্ষে ৬ অক্ষরের পাসওয়ার্ড">
+
+            <button class="action-btn" id="btnRegister">অ্যাকাউন্ট তৈরি করুন</button>
+        </div>
+    </div>
+
+
+    <!-- ধাপ ২: মেম্বার প্রোফাইল ফর্ম -->
+    <div id="detailsSection" style="display: none;">
+        <h3 style="color: var(--primary); margin: 0 0 5px 0;">মেম্বার প্রোফাইল ফর্ম</h3>
+        <p style="font-size: 12px; color: #666; margin-bottom: 15px;">আপনার সঠিক তথ্য দিয়ে সদস্য ফর্মটি সম্পূর্ণ করুন</p>
+        
+        <div class="form-body">
+            <label for="fullName">আপনার পুরো নাম</label>
+            <input type="text" id="fullName" placeholder="যেমন: রিমেল সেন">
+
+            <label for="age">বয়স</label>
+            <input type="number" id="age" placeholder="বয়স লিখুন">
+
+            <label for="role">ক্লাবের পদবি (Role)</label>
+            <select id="role">
+                <option value="General Member">General Member (সাধারণ সদস্য)</option>
+                <option value="President">President (সভাপতি)</option>
+                <option value="Secretary">Secretary (সম্পাদক)</option>
+                <option value="Treasurer">Treasurer (ক্যাশিয়ার)</option>
+                <option value="Executive Member">Executive Member</option>
+            </select>
+
+            <label for="bloodGroup">ব্লাড গ্রুপ</label>
+            <select id="bloodGroup">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+
+            <label for="address">ঠিকানা</label>
+            <input type="text" id="address" placeholder="গ্রাম/পাড়া, পোস্ট অফিস">
+
+            <label for="photoInput">প্রোফাইল ছবি আপলোড</label>
+            <input type="file" id="photoInput" accept="image/*">
+
+            <button class="action-btn" id="btnGenerateCard">আইডি কার্ড তৈরি করুন</button>
+        </div>
+    </div>
+
+
+    <!-- ধাপ ৩: ডিজিটাল আইডি কার্ড আউটপুট -->
+    <div id="idCardSection" style="display: none;">
+        <div class="id-card" id="printableCard">
+            <div class="id-card-header">
+                <h3>CHARAKPARA JANAKLYAN SNGHA</h3>
+                <p>চড়কপাড়া, বালিসা, উ: ২৪ পরগণা | রেজি: ১/21/5990</p>
+            </div>
+
+            <div class="id-card-body">
+                <img id="cardPhoto" src="https://via.placeholder.com/100" alt="Member Photo" class="member-photo">
+                <br>
+                <div class="verified-badge">✓ Verified Member</div>
+
+                <div class="id-details">
+                    <div><strong>নাম:</strong> <span id="cardName"></span></div>
+                    <div><strong>পদবি:</strong> <span id="cardRole"></span></div>
+                    <div><strong>বয়স:</strong> <span id="cardAge"></span> বছর</div>
+                    <div><strong>ব্লাড গ্রুপ:</strong> <span id="cardBlood"></span></div>
+                    <div><strong>ঠিকানা:</strong> <span id="cardAddress"></span></div>
+                </div>
+
+                <div class="card-footer">
+                    <div>
+                        <strong>আইডি নম্বর:</strong> CJS-<span id="cardID"></span><br>
+                        <span>ইস্যু তারিখ: <span id="cardDate"></span></span>
+                    </div>
+                    <img id="qrCodeImg" src="" alt="QR Code" class="qr-code-img">
+                </div>
+            </div>
+        </div>
+
+        <button class="action-btn" onclick="window.print()">Print / Save PDF</button>
+        <button class="action-btn" style="background: #666; margin-top: 10px; box-shadow: none;" id="btnLogout">লগআউট করুন</button>
+    </div>
+
+</div>
+
+<!-- Firebase SDK Integration -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { 
+        getAuth, 
+        createUserWithEmailAndPassword, 
+        signInWithEmailAndPassword, 
+        signOut,
+        onAuthStateChanged 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // আপনার Firebase কনফিগারেশন বসানো হয়েছে
+    const firebaseConfig = {
+        apiKey: "AIzaSyCCjDYY6Em5DicK8Vw9eGP7447HT8lBA34",
+        authDomain: "project-club-janakalyan-sangha.firebaseapp.com",
+        projectId: "project-club-janakalyan-sangha",
+        storageBucket: "project-club-janakalyan-sangha.firebasestorage.app",
+        messagingSenderId: "541504644394",
+        appId: "1:541504644394:web:c6216f2e7527e6ab28aa53",
+        measurementId: "G-SC12EBVY0L"
+    };
+
+    // Firebase ইনিশিয়ালাইজেশন
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    var userPhotoData = "https://via.placeholder.com/100";
+
+    // ট্যাবস সুইচার
+    document.getElementById('loginTab').addEventListener('click', () => switchTab('login'));
+    document.getElementById('regTab').addEventListener('click', () => switchTab('reg'));
+
+    function switchTab(type) {
+        if(type === 'login') {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('regForm').style.display = 'none';
+            document.getElementById('loginTab').classList.add('active');
+            document.getElementById('regTab').classList.remove('active');
+        } else {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('regForm').style.display = 'block';
+            document.getElementById('regTab').classList.add('active');
+            document.getElementById('loginTab').classList.remove('active');
+        }
+    }
+
+    // ১. রিয়েল রেজিস্ট্রেশন
+    document.getElementById('btnRegister').addEventListener('click', () => {
+        const email = document.getElementById('regEmail').value;
+        const password = document.getElementById('regPassword').value;
+
+        if(!email || !password) {
+            alert("ইমেইল ও পাসওয়ার্ড প্রদান করুন!");
+            return;
+        }
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                alert("রেজিস্ট্রেশন সফল হয়েছে!");
+            })
+            .catch((error) => {
+                alert("ভুল হয়েছে: " + error.message);
+            });
+    });
+
+    // ২. রিয়েল সিকিউরড লগইন
+    document.getElementById('btnLogin').addEventListener('click', () => {
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        if(!email || !password) {
+            alert("ইমেইল ও পাসওয়ার্ড প্রদান করুন!");
+            return;
+        }
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // সফলভাবে লগইন হয়েছে
+            })
+            .catch((error) => {
+                alert("লগইন ব্যর্থ হয়েছে! সঠিক ইমেইল ও পাসওয়ার্ড দিন।");
+            });
+    });
+
+    // ৩. লগইন স্টেট চেক
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            document.getElementById('authSection').style.display = 'none';
+            document.getElementById('detailsSection').style.display = 'block';
+        } else {
+            document.getElementById('authSection').style.display = 'block';
+            document.getElementById('detailsSection').style.display = 'none';
+            document.getElementById('idCardSection').style.display = 'none';
+        }
+    });
+
+    // ৪. লগআউট
+    document.getElementById('btnLogout').addEventListener('click', () => {
+        signOut(auth);
+    });
+
+    // ফটো প্রাকদর্শন
+    document.getElementById('photoInput').addEventListener('change', (event) => {
+        var reader = new FileReader();
+        reader.onload = function() {
+            userPhotoData = reader.result;
+        }
+        if(event.target.files[0]){
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+
+    // আইডি কার্ড জেনারেট
+    document.getElementById('btnGenerateCard').addEventListener('click', () => {
+        var name = document.getElementById('fullName').value;
+        var age = document.getElementById('age').value;
+        var role = document.getElementById('role').value;
+        var blood = document.getElementById('bloodGroup').value;
+        var address = document.getElementById('address').value;
+
+        if(name === "" || age === "" || address === "") {
+            alert("সব প্রয়োজনীয় তথ্য পূরণ করুন।");
+            return;
+        }
+
+        var memberID = Math.floor(1000 + Math.random() * 9000);
+        var today = new Date().toLocaleDateString('en-GB');
+
+        document.getElementById('cardName').innerText = name;
+        document.getElementById('cardAge').innerText = age;
+        document.getElementById('cardRole').innerText = role;
+        document.getElementById('cardBlood').innerText = blood;
+        document.getElementById('cardAddress').innerText = address;
+        document.getElementById('cardPhoto').src = userPhotoData;
+        document.getElementById('cardID').innerText = memberID;
+        document.getElementById('cardDate').innerText = today;
+
+        var qrData = "Charakpara Janaklyan Sngha\nMember Verification:\nName: " + name + "\nRole: " + role + "\nID: CJS-" + memberID + "\nBlood Group: " + blood + "\nAddress: " + address;
+        var qrApiUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(qrData);
+        document.getElementById('qrCodeImg').src = qrApiUrl;
+
+        document.getElementById('detailsSection').style.display = 'none';
+        document.getElementById('idCardSection').style.display = 'block';
+    });
+</script>
+
+</body>
+</html>
